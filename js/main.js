@@ -30,7 +30,7 @@ CountDownToMario('06/05/2025 12:01 AM', 'countdown');
  */
 function CountDownToMario(endTime, divId) {
   /* STEP 1: Convert deadline into a Date object. */
-  const end = new Date(endTime);
+  const end = new Date("September 30, 2025 12:01 AM");
 
   /* 👉 Time constants (leave these as-is): */
   const _second = 1000;
@@ -39,8 +39,9 @@ function CountDownToMario(endTime, divId) {
   const _day    = _hour * 24;
 
   /* STEP 2: Declare any variables you’ll need here
-            (e.g. interval id). */
-
+    */
+   let now = new Date().getTime();
+    
   /* STEP 3: Write an inner `showRemaining()` function:
        • get current time (`new Date()`)
        • figure out the distance to launch
@@ -49,6 +50,23 @@ function CountDownToMario(endTime, divId) {
        • pad units to two digits (see hints below)
        • update `document.getElementById(divId).textContent`
   */
+ function showRemaining() {
+    let now = new Date().getTime();
+    const distance = end - now;
+    if (distance <= 0) {
+        clearInterval(timer)
+        document.getElementById(divId).textContent = "Hype Time!";
+    } 
+    else {
+        const days = Math.floor(distance / _day);
+        const hours = Math.floor(distance % _day / _hour);
+        const minutes = Math.floor(distance % _hour / _minute);
+        const seconds = Math.floor(distance % _minute / _second);
+        const pad = n => String(n).padStart(2, '0');
+        document.getElementById(divId).textContent = `${pad(days)}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+
+    }
+}
 
   /* STEP 4: Call `showRemaining()` once so the timer
             appears immediately. */
@@ -76,4 +94,4 @@ function CountDownToMario(endTime, divId) {
 /* ======================================================
    🎉  BONUS  — optional extras
    ------------------------------------------------------
-   • Add a confetti explosion (see confetti.js) - Check js in 
+   • Add a confetti explosion (see confetti.js) - Check js in

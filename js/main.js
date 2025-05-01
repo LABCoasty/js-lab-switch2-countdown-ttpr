@@ -21,7 +21,6 @@
    The second argument is the id of the element that
    will display the timer.
 ------------------------------------------------------ */
-CountDownToMario('06/05/2025 12:01 AM', 'countdown');
 
 /**
  *  Builds a self-updating countdown.
@@ -67,31 +66,11 @@ function CountDownToMario(endTime, divId) {
 
     }
 }
-
+showRemaining();
   /* STEP 4: Call `showRemaining()` once so the timer
             appears immediately. */
-
+setInterval(showRemaining, _second);
   /* STEP 5: Repeat `showRemaining()` every second
             with `setInterval`. */
 }
-
-/* ======================================================
-   📌  HINTS  — uncomment / tweak as you implement
-   ------------------------------------------------------
-   • Two-digit padding helper
-       // const pad = n => String(n).padStart(2, '0');
-
-   • Read release date from HTML
-       // const div    = document.getElementById(divId);
-       // const target = new Date(div.dataset.release);
-
-   • Celebration styles
-       // document.body.classList.add('launched');
-
-   • Play sound once
-       // document.getElementById('coinSound').play();
-====================================================== */
-/* ======================================================
-   🎉  BONUS  — optional extras
-   ------------------------------------------------------
-   • Add a confetti explosion (see confetti.js) - Check js in
+CountDownToMario('06/05/2025 12:01 AM', 'countdown');
